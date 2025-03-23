@@ -1,0 +1,1 @@
+S_RESULT_PATH = "tests/test_result_screenshots/"
