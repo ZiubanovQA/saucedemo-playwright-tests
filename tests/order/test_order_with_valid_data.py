@@ -20,6 +20,6 @@ def test_order_with_valid_data(browser):
 
     browser.click('button[data-test="finish"]')
 
-    browser.screenshot(path=c.S_RESULT_PATH + "order_with_valid_data.png")
+    browser.screenshot(path=c.SCREENSHOT_PATH + "order_with_valid_data.png")
 
     assert browser.locator('h2.complete-header').inner_text() == "Thank you for your order!"

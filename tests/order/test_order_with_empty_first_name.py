@@ -17,6 +17,6 @@ def test_order_with_empty_first_name(browser):
     browser.fill('input[data-test="postalCode"]', '123456')
     browser.click('input[data-test="continue"]')
 
-    browser.screenshot(path=c.S_RESULT_PATH + "order_with_empty_first_name.png")
+    browser.screenshot(path=c.SCREENSHOT_PATH + "order_with_empty_first_name.png")
 
     assert browser.locator('h3[data-test="error"]').inner_text() == "Error: First Name is required"

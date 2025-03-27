@@ -1,16 +1,24 @@
-import config as c
+from pages.login_page import LoginPage
+from pages.cart_page import CartPage
 
-def test_remove_item_from_cart(browser):
-    browser.goto("https://www.saucedemo.com/")
-    browser.fill('input[data-test="username"]', 'standard_user')
-    browser.fill('input[data-test="password"]', 'secret_sauce')
-    browser.click('input[data-test="login-button"]')
+def test_remove_from_cart(browser):
+    login_page = LoginPage(
+        page=browser,
+        test_name="test_login",
+        url="https://www.saucedemo.com/"
+    )   
+    
+    login_page.open()
+    login_page.login("standard_user", "secret_sauce")
+    
+    cart_page = CartPage(
+        page=browser,
+        test_name="test_remove_from_cart",
+        url="https://www.saucedemo.com/inventory.html"
+    )
 
-    browser.click('button[data-test="add-to-cart-sauce-labs-backpack"]')
-    browser.click('a.shopping_cart_link')
-    
-    browser.click('button[data-test="remove-sauce-labs-backpack"]')
-    
-    browser.screenshot(path=c.S_RESULT_PATH + "remove_from_cart.png")
-    
-    assert browser.locator('.cart_item').count() == 0
+    cart_page.add_to_cart()
+    cart_page.remove_from_cart()
+
+    cart_count = browser.locator(".shopping_cart_badge")
+    assert cart_count.count() == 0, "Товар не удалился из корзины!"

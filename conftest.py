@@ -8,7 +8,7 @@ def playwright_instance():
 
 @pytest.fixture(scope="function")
 def browser(playwright_instance):
-    browser = playwright_instance.chromium.launch(headless=False)
+    browser = playwright_instance.chromium.launch(headless=True)
 
     context = browser.new_context(
         viewport={"width": 1920, "height": 1080}
