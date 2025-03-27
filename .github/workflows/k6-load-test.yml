@@ -35,4 +35,5 @@ jobs:
 
       - name: Run K6 cloud test
         run: k6 cloud load_tests_k6/login_load_test.js
-        
+        env:
+         K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
