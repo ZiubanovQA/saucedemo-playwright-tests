@@ -1,0 +1,30 @@
+name: K6 Load Test
+
+on:
+  push:
+    branches: [ master ]  # Или другую ветку, если нужно
+
+jobs:
+  k6-load-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install k6
+        run: |
+          sudo apt update
+          sudo apt install -y gnupg software-properties-common
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 33EF1F209F7B3FB3
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt update
+          sudo apt install -y k6
+
+      - name: Run K6 load test
+        run: k6 run load_tests_k6/login_load_test.js
