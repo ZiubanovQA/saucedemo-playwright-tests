@@ -33,5 +33,6 @@ jobs:
           sudo apt update
           sudo apt install -y k6
 
-      - name: Run K6 load test
-        run: k6 run load_tests_k6/login_load_test.js
+      - name: Run K6 cloud test
+        run: k6 cloud load_tests_k6/login_load_test.js
+        
