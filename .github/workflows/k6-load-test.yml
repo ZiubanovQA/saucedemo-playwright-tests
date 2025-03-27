@@ -1,8 +1,8 @@
-name: K6 Load Test
+name: 📊 K6 Load Test – Login Page
 
 on:
   push:
-    branches: [ master ]  # Или другую ветку, если нужно
+    branches: [ master ]
 
 jobs:
   k6-load-test:
@@ -19,17 +19,17 @@ jobs:
 
       - name: Install k6
         run: |
-          # Устанавливаем зависимости
+ 
           sudo apt update
           sudo apt install -y gpg
 
-          # Скачиваем ключ k6 напрямую и добавляем его
+
           curl -s https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
 
-          # Добавляем репозиторий k6
+
           echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
 
-          # Обновляем пакеты и устанавливаем k6
+
           sudo apt update
           sudo apt install -y k6
 
